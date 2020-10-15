@@ -1,3 +1,3 @@
-# RestGame-validTest
+# Game Rest
  
 # BOOTCAMP
