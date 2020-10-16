@@ -3,7 +3,6 @@ package com.rest.demo.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,31 +12,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.rest.demo.enums.GenreEnum;
 
 @Entity
-@Table(name="genres")
-public class Genre implements Serializable{
-	
-    /**
+@Table(name = "genres")
+public class Genre implements Serializable {
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idgenres;
-	
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "enum")
+
+	@Enumerated(value = EnumType.STRING)
+	@Column(name = "enum")
 	private GenreEnum genreEnum;
-    
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "genres")
-    private List<Game> games = new ArrayList<>();
-    
+
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "genres")
+	private List<Game> games = new ArrayList<>();
+
 	public Genre(Long idgenres, GenreEnum genreEnum, List<Game> games) {
 		super();
 		this.idgenres = idgenres;
@@ -79,16 +76,7 @@ public class Genre implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Genre [idgenres=" + idgenres + ", genreEnum= " + genreEnum +" ]";
+		return "Genre [idgenres=" + idgenres + ", genreEnum= " + genreEnum + " ]";
 	}
-
-
-
-
-	
-	
-	
-	
-	
 
 }
