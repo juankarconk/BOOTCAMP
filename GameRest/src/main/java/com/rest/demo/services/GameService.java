@@ -2,27 +2,30 @@ package com.rest.demo.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import com.rest.demo.exception.GameNoExistsException;
-import com.rest.demo.model.GameDto;
-import com.rest.demo.model.Genre;
+
+import com.rest.demo.dto.GameDto;
+import com.rest.demo.enums.GenreEnum;
+import com.rest.demo.exception.GameDontExistException;
 
 @Service
-public class GameService implements IGameService {
-
+public class GameService  implements IGameService{
+	// que game tenga el nombre como indice es porque el dto lo modifique para utilizarlo con los restJpa
 	private HashMap<String, GameDto> games = new HashMap<String, GameDto>();
-
-	public GameService() {
-		ArrayList<Genre> g = new ArrayList<Genre>();
-		g.add(Genre.PUZLE);
-		ArrayList<Genre> g2 = new ArrayList<Genre>();
-		g2.add(Genre.TPS);
-		g2.add(Genre.MULTIJUGADOR);
-
-		games.put("RDR2", new GameDto("RDR2", "blabla", 1967, "Rockstar Games", g));
-		games.put("GTA5", new GameDto("GTA5", "dsadsadsa", 2013, "Rockstar Games", g2));
-		games.put("7 days to die", new GameDto("7 days to die", "The Fun Pimps", 2000, "urur"));
-		games.put("Forza Horizon 4", new GameDto("Forza Horizon 4", "Turn 10 studios", 2000, "ahha"));
+	
+	public GameService(){
+		ArrayList<GenreEnum> g = new ArrayList<GenreEnum>();
+		g.add(GenreEnum.PUZLE);
+		ArrayList<GenreEnum> g2 = new ArrayList<GenreEnum>();
+		g2.add(GenreEnum.TPS);
+		g2.add(GenreEnum.MULTIJUGADOR);
+		
+		games.put("tetris", new GameDto((long) 1,"tetris","dsadsadsa", 1967,g));
+		games.put("GTA5", new GameDto((long) 2,"GTA5","dsadsadsa", 2013, g2));
+		games.put("tre n", new GameDto("tre n","tre des", 2000) );
+		games.put("cua n", new GameDto("cua n","cua des", 2000));
 
 	}
 
@@ -30,27 +33,27 @@ public class GameService implements IGameService {
 		games.put(game.getName(), game);
 		return true;
 	}
-
 	public boolean delete(String name) {
-
+		
 		games.remove(name);
-
+		
 		return true;
 	}
-
+	
 	public GameDto getbyname(String name) {
-		if (games.containsKey(name))
+		if(games.containsKey(name))
 			return games.get(name);
 		else
-			throw new GameNoExistsException("Juego No encontrado");
+			throw new GameDontExistException("Juego No encontrado");
 	}
-
+	
 	public HashMap<String, GameDto> getGames() {
 		return games;
 	}
-
 	public void setGames(HashMap<String, GameDto> games) {
 		this.games = games;
 	}
-
+	
+	
+	
 }
