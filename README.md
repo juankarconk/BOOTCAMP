@@ -1,3 +1,1 @@
 # Game Rest
- 
-# BOOTCAMP
