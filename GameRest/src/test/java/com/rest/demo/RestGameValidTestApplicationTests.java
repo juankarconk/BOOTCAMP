@@ -19,23 +19,24 @@ class RestGameValidTestApplicationTests {
 		genre();
 
 	}
+
 	@Autowired
 	GameConverter gc;
-	
+
 	@Autowired
 	GameDtoConverter gcc;
-	
+
 	@Autowired
 	CrudGame repository;
 	CrudGenre repository2;
 
-	
 	void converter() {
-		System.out.println(gc.getConverter(Game.class).convert(new GameDto("tre n","tre des", 2000)));
+		System.out.println(gc.getConverter(Game.class).convert(new GameDto("tre n", "tre des", 2000)));
 		System.out.println(gcc.getConverter(GameDto.class).convert(repository.findById((long) 1).get()));
 	}
-	
+
 	void genre() {
-		//System.out.println(repository.findByGenre(repository2.findById((long) 1).get()));
+		// System.out.println(repository.findByGenre(repository2.findById((long)
+		// 1).get()));
 	}
 }

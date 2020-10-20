@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Game implements Serializable {
 	private String description;
 
 	private int year;
-
+	@ElementCollection(targetClass = Genre.class)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "game_genre", joinColumns = @JoinColumn(name = "idgame"), inverseJoinColumns = @JoinColumn(name = "idgenre"))
 	private List<Genre> genres = new ArrayList<>();

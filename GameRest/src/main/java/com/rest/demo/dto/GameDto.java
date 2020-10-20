@@ -3,7 +3,6 @@ package com.rest.demo.dto;
 import java.util.ArrayList;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import com.rest.demo.enums.GenreEnum;
 
 public class GameDto {
